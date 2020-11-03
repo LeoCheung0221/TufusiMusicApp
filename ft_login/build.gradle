@@ -21,8 +21,25 @@ android {
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation rootProject.depsLibs.appcompact
-    implementation rootProject.depsLibs.design
-    implementation rootProject.depsLibs.recyclerview
-    implementation rootProject.depsLibs.constraint
+
+    compileOnly rootProject.depsLibs.appcompact
+    compileOnly rootProject.depsLibs.design
+    compileOnly rootProject.depsLibs.recyclerview
+    compileOnly rootProject.depsLibs.constraint
+    //EventBus类库依赖
+    compileOnly rootProject.depsLibs.eventbus
+    //Gson解析库
+    compileOnly rootProject.depsLibs.gson
+    //ARouter库
+    compileOnly(rootProject.depsLibs.arouterapi) {
+        exclude group: 'com.android.support'
+    }
+    annotationProcessor rootProject.depsLibs.aroutercompiler
+
+    //网络请求库
+    compileOnly project(':lib_network')
+    //业务基础库
+    compileOnly project(':lib_base')
+    //基础UI库
+    compileOnly project(':lib_common_ui')
 }
