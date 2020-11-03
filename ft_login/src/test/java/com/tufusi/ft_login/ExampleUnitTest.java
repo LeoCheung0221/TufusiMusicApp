@@ -1,4 +1,4 @@
-package com.tufusi.music;
+package com.tufusi.ft_login;
 
 import org.junit.Test;
 

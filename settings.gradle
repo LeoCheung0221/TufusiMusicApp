@@ -1,3 +1,4 @@
+include ':ft_login'
 include ':hi_music'
 
 include ':lib_webview'

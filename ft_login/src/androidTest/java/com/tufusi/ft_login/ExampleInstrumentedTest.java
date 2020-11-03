@@ -1,4 +1,4 @@
-package com.tufusi.music;
+package com.tufusi.ft_login;
 
 import android.content.Context;
 
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        assertEquals("com.tufusi.music", appContext.getPackageName());
+        assertEquals("com.tufusi.ft_login.test", appContext.getPackageName());
     }
 }
