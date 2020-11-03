@@ -1,12 +1,15 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion "30.0.0"
+    compileSdkVersion rootProject.android.compileSdkVersion
+
+    dexOptions {
+        jumboMode = true
+    }
 
     defaultConfig {
-        minSdkVersion 21
-        targetSdkVersion 29
+        minSdkVersion rootProject.android.minSdkVersion
+        targetSdkVersion rootProject.android.targetSdkVersion
         versionCode 1
         versionName "1.0"
     }
@@ -21,5 +24,8 @@ android {
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation 'androidx.appcompat:appcompat:1.2.0'
+    compileOnly rootProject.depsLibs.appcompact
+    //OkHttp依赖
+    api rootProject.depsLibs.okhttp
+    compileOnly rootProject.depsLibs.gson
 }

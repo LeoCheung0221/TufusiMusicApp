@@ -1,4 +1,4 @@
-include ':tufusi_music'
+include ':hi_music'
 
 include ':lib_webview'
 include ':lib_video'
