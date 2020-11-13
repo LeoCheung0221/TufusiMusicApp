@@ -1,15 +1,19 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 apply from: this.rootProject.file('tufusi.gradle')
+
 buildscript {
     repositories {
+        mavenLocal()
         google()
-        jcenter()
+        jcenter() { url 'http://jcenter.bintray.com/' }
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
         mavenCentral()
+        maven { url 'http://maven.ghostscript.com' }
     }
     dependencies {
         classpath "com.android.tools.build:gradle:4.0.1"
         //greenDao插件依赖
-        classpath 'org.greenrobot:greendao-gradle-plugin:3.2.2'
+        classpath 'org.greenrobot:greendao-gradle-plugin:3.3.0'
         //ARouter插件依赖
         classpath "com.alibaba:arouter-register:1.0.2"
         // NOTE: Do not place your application dependencies here; they belong
@@ -19,9 +23,14 @@ buildscript {
 
 allprojects {
     repositories {
+        mavenLocal()
         google()
-        jcenter()
+        jcenter() { url 'http://jcenter.bintray.com/' }
+        mavenCentral()
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
         maven { url "https://jitpack.io" }
+        maven { url 'http://maven.aliyun.com/nexus/content/repositories/releases/' }
+        maven { url 'http://maven.ghostscript.com' }
     }
 }
 

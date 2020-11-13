@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.alibaba.arouter'
 
 android {
     compileSdkVersion rootProject.android.compileSdkVersion
@@ -9,6 +10,13 @@ android {
         targetSdkVersion rootProject.android.targetSdkVersion
         versionCode 1
         versionName "1.0"
+
+        //ARouter配置
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName(), AROUTER_GENERATE_DOC: "enable"]
+            }
+        }
     }
 
     buildTypes {

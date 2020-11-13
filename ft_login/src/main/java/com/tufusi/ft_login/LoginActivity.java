@@ -2,15 +2,12 @@ package com.tufusi.ft_login;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.View;
 
-import androidx.annotation.Nullable;
 
 import com.tufusi.ft_login.inter.IUserLoginView;
 import com.tufusi.ft_login.presenter.UserLoginPresenter;
 import com.tufusi.lib_common_ui.base.BaseActivity;
-import com.tufusi.lib_common_ui.base.BasePresenter;
 
 /**
  * Created by LeoCheung on 2020/11/3.
@@ -22,6 +19,11 @@ public class LoginActivity extends BaseActivity<UserLoginPresenter, IUserLoginVi
     public static void start(Context context) {
         Intent intent = new Intent(context, LoginActivity.class);
         context.startActivity(intent);
+    }
+
+    @Override
+    protected IUserLoginView createView() {
+        return this;
     }
 
     @Override
@@ -46,7 +48,7 @@ public class LoginActivity extends BaseActivity<UserLoginPresenter, IUserLoginVi
 
     @Override
     public String getUserName() {
-        return "18734924592";
+        return "15715769421";
     }
 
     @Override

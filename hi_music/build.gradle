@@ -95,11 +95,11 @@ dependencies {
     implementation project(':lib_base')
     //login模块
     implementation project(':ft_login')
-//    //home模块
-//    implementation project(':ft_home')
-//    //loading模块
+    //home模块
+    implementation project(':ft_home')
+    //loading模块
 //    implementation project(':ft_loading')
-//    //音频播放器组
-//    implementation project(':ft_audio')
+    //音频播放器组
+    implementation project(':ft_audio')
 
 }

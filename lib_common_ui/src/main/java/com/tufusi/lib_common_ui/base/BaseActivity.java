@@ -40,15 +40,13 @@ public abstract class BaseActivity<T extends BasePresenter<V>, V extends BaseVie
         initView();
     }
 
-    private V createView() {
-        return null;
-    }
-
     protected abstract int getLayoutId();
 
     protected abstract void initView();
 
     protected abstract T createPresenter();
+
+    protected abstract V createView();
 
     /**
      * 申请指定的权限.

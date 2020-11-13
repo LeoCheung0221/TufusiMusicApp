@@ -40,7 +40,7 @@ public class RequestCenter {
      */
     public static void login(DisposeDataListener listener) {
         RequestParams params = new RequestParams();
-        params.put("mb", "18734924592");
+        params.put("mb", "15715769421");
         params.put("pwd", "999999q");
         RequestCenter.getRequest(HttpConstants.LOGIN, params, listener, User.class);
     }

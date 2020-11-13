@@ -53,6 +53,8 @@ import com.google.zxing.common.HybridBinarizer;
 import com.google.zxing.qrcode.QRCodeReader;
 import com.google.zxing.qrcode.QRCodeWriter;
 import com.tufusi.lib_common_ui.base.BaseActivity;
+import com.tufusi.lib_common_ui.base.BasePresenter;
+import com.tufusi.lib_common_ui.base.BaseView;
 import com.tufusi.lib_qrcode.R;
 import com.tufusi.lib_qrcode.zxing.camera.CameraManager;
 import com.tufusi.lib_qrcode.zxing.decode.BeepManager;
@@ -136,10 +138,12 @@ public final class CaptureActivity extends BaseActivity
     }
 
     @Override
-    public void onCreate(Bundle icicle) {
-        super.onCreate(icicle);
-        setContentView(R.layout.activity_qrcode_capture_layout);
+    protected int getLayoutId() {
+        return R.layout.activity_qrcode_capture_layout;
+    }
 
+    @Override
+    protected void initView() {
         Util.currentActivity = this;
         CameraManager.init(getApplication());
         viewfinderView = findViewById(R.id.viewfinder_view);
@@ -165,6 +169,16 @@ public final class CaptureActivity extends BaseActivity
         beepManager = new BeepManager(this);
 
         // showHelpOnFirstLaunch();
+    }
+
+    @Override
+    protected BasePresenter createPresenter() {
+        return null;
+    }
+
+    @Override
+    protected BaseView createView() {
+        return null;
     }
 
     SurfaceView surfaceView;
