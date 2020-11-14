@@ -13,9 +13,17 @@ import android.widget.TextView;
 
 import com.tufusi.ft_audio.R;
 import com.tufusi.ft_audio.mediaplayer.core.AudioController;
+import com.tufusi.ft_audio.mediaplayer.events.AudioLoadEvent;
+import com.tufusi.ft_audio.mediaplayer.events.AudioPauseEvent;
+import com.tufusi.ft_audio.mediaplayer.events.AudioProgressEvent;
+import com.tufusi.ft_audio.mediaplayer.events.AudioStartEvent;
+import com.tufusi.ft_audio.mediaplayer.model.AudioBean;
 import com.tufusi.ft_audio.mediaplayer.ui.MusicPlayerActivity;
+import com.tufusi.lib_image_loader.app.ImageLoaderManager;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 /**
  * Created by LeoCheung on 2020/11/12.
@@ -30,6 +38,8 @@ public class BottomMusicView extends RelativeLayout {
     private TextView mAlbumView;
     private ImageView mPlayView;
     private ImageView mRightView;
+
+    private AudioBean mAudioBean;
 
     public BottomMusicView(Context context) {
         this(context, null);
@@ -77,11 +87,65 @@ public class BottomMusicView extends RelativeLayout {
         });
         mRightView = rootView.findViewById(R.id.show_list_view);
         mRightView.setOnClickListener(new OnClickListener() {
-            @Override public void onClick(View v) {
+            @Override
+            public void onClick(View v) {
                 //显示音乐列表对话框
                 MusicListDialog dialog = new MusicListDialog(mContext);
                 dialog.show();
             }
         });
     }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        EventBus.getDefault().unregister(this);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onAudioLoadEvent(AudioLoadEvent event) {
+        //更新当前view为load状态
+        mAudioBean = event.mAudioBean;
+        showLoadView();
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onAudioPauseEvent(AudioPauseEvent event) {
+        //更新当前view为暂停状态
+        showPauseView();
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onAudioStartEvent(AudioStartEvent event) {
+        //更新当前view为播放状态
+        showPlayView();
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onAudioProgressEvent(AudioProgressEvent event) {
+        //更新当前view的播放进度
+    }
+
+    private void showLoadView() {
+        //目前loading状态的UI处理与pause逻辑一样，分开为了以后好扩展
+        if (mAudioBean != null) {
+            ImageLoaderManager.getInstance().displayImageForCircle(mLeftView, mAudioBean.albumPic);
+            mTitleView.setText(mAudioBean.name);
+            mAlbumView.setText(mAudioBean.album);
+            mPlayView.setImageResource(R.mipmap.note_btn_pause_white);
+        }
+    }
+
+    private void showPauseView() {
+        if (mAudioBean != null) {
+            mPlayView.setImageResource(R.mipmap.note_btn_play_white);
+        }
+    }
+
+    private void showPlayView() {
+        if (mAudioBean != null) {
+            mPlayView.setImageResource(R.mipmap.note_btn_pause_white);
+        }
+    }
+
 }

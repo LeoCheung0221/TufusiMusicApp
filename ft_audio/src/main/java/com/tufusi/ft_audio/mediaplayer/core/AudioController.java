@@ -233,6 +233,18 @@ public class AudioController {
         next();
     }
 
+    public ArrayList<AudioBean> getQueue() {
+        return mQueue;
+    }
+
+    public PlayMode getPlayMode() {
+        return mPlayMode;
+    }
+
+    public void setPlayMode(PlayMode playMode) {
+        mPlayMode = playMode;
+    }
+
     /**
      * 播放方式
      */
